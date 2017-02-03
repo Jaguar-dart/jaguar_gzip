@@ -7,8 +7,8 @@ import 'package:jaguar_reflect/jaguar_reflect.dart';
 import 'package:jaguar_static_file/jaguar_static_file.dart';
 
 @Api(path: '/api')
-@WrapGzipStream()
 class ExampleApi {
+  @WrapGzipStream()
   @WrapStaticFile()
   @Get(path: '/hello.txt')
   Response<JaguarFile> getHelloTxt() =>

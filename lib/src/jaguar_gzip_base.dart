@@ -22,7 +22,7 @@ class WrapGzipStream implements RouteWrapper<GzipStream> {
 
 class GzipStream extends Interceptor {
   Future<Response<Stream<List<int>>>> post(
-      Response<Stream<List<int>>> incoming) async {
+      @InputRouteResponse() Response<Stream<List<int>>> incoming) async {
     Response<Stream<List<int>>> ret = new Response.cloneExceptValue(incoming);
     ret.headers.set(HttpHeaders.CONTENT_ENCODING, 'gzip');
 
@@ -43,7 +43,8 @@ class WrapGzipUtf8String implements RouteWrapper<GzipUtf8String> {
 }
 
 class GzipUtf8String extends Interceptor {
-  Future<Response<List<int>>> post(Response<String> incoming) async {
+  Future<Response<List<int>>> post(
+      @InputRouteResponse() Response<String> incoming) async {
     Response<List<int>> ret = new Response.cloneExceptValue(incoming);
     ret.headers.set(HttpHeaders.CONTENT_ENCODING, 'gzip');
     ret.headers.charset = 'utf-8';
