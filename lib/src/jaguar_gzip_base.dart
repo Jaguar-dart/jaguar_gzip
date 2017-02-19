@@ -10,11 +10,7 @@ final ZLibEncoder _gzip = new ZLibEncoder(gzip: true);
 
 final Utf8Encoder _utf8 = new Utf8Encoder();
 
-class WrapGzipStream implements RouteWrapper<GzipStream> {
-  final String id = null;
-
-  final Map<Symbol, MakeParam> makeParams = null;
-
+class WrapGzipStream extends RouteWrapper<GzipStream> {
   const WrapGzipStream();
 
   GzipStream createInterceptor() => new GzipStream();
@@ -32,11 +28,7 @@ class GzipStream extends Interceptor {
   }
 }
 
-class WrapGzipUtf8String implements RouteWrapper<GzipUtf8String> {
-  final String id = null;
-
-  final Map<Symbol, MakeParam> makeParams = null;
-
+class WrapGzipUtf8String extends RouteWrapper<GzipUtf8String> {
   const WrapGzipUtf8String();
 
   GzipUtf8String createInterceptor() => new GzipUtf8String();

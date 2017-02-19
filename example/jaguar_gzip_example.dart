@@ -16,7 +16,7 @@ class ExampleApi {
 }
 
 main() async {
-  Configuration conf = new Configuration();
-  conf.addApi(new JaguarReflected(new ExampleApi()));
-  await serve(conf);
+  Jaguar conf = new Jaguar();
+  conf.addApi(reflectJaguar(new ExampleApi()));
+  await conf.serve();
 }
