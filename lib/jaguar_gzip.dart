@@ -6,6 +6,4 @@
 /// More dartdocs go here.
 library jaguar_gzip;
 
-export 'src/jaguar_gzip_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/src.dart';

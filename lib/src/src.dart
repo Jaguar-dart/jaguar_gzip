@@ -10,15 +10,11 @@ final ZLibEncoder _gzip = new ZLibEncoder(gzip: true);
 
 final Utf8Encoder _utf8 = new Utf8Encoder();
 
-class WrapGzipStream extends RouteWrapper<GzipStream> {
-  const WrapGzipStream();
-
-  GzipStream createInterceptor() => new GzipStream();
-}
-
 class GzipStream extends Interceptor {
+  void pre(Context ctx) {}
+
   Future<Response<Stream<List<int>>>> post(
-      @InputRouteResponse() Response<Stream<List<int>>> incoming) async {
+      Context ctx, Response<Stream<List<int>>> incoming) async {
     Response<Stream<List<int>>> ret = new Response.cloneExceptValue(incoming);
     ret.headers.set(HttpHeaders.CONTENT_ENCODING, 'gzip');
 
@@ -28,15 +24,11 @@ class GzipStream extends Interceptor {
   }
 }
 
-class WrapGzipUtf8String extends RouteWrapper<GzipUtf8String> {
-  const WrapGzipUtf8String();
-
-  GzipUtf8String createInterceptor() => new GzipUtf8String();
-}
-
 class GzipUtf8String extends Interceptor {
+  void pre(Context ctx) {}
+
   Future<Response<List<int>>> post(
-      @InputRouteResponse() Response<String> incoming) async {
+      Context ctx, Response<String> incoming) async {
     Response<List<int>> ret = new Response.cloneExceptValue(incoming);
     ret.headers.set(HttpHeaders.CONTENT_ENCODING, 'gzip');
     ret.headers.charset = 'utf-8';
